@@ -1,0 +1,196 @@
+<!DOCTYPE html> <html><head>
+        <title>Angie's 5.P Starter Code </title>
+        <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&amp;display=swap" rel="stylesheet">
+    <style>.answer {
+	margin: 100px 100px 23px 100px;
+    font-size: 20px;
+}
+
+input {
+	background-color: white;
+    border: solid 0.5px;
+    border-color:#F28482; 
+    border-radius:20px;
+    padding: 10px 0px 10px 25px;
+    color: #F28482;
+}
+
+.enter {
+	background-color: white;
+    border: solid 0.5px;
+    border-color:#F28482; 
+    border-radius:20px;
+    padding:10px 10px 10px 10px;
+    color: #F28482;
+    transition: all 500ms ease;
+}
+
+.enter:hover {
+transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+.enter::active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.enter:hover::after {
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0;
+}
+
+body {
+    font-family: 'Lexend', sans-serif;
+    background-color: #F7EDE2;
+    text-align: center;
+    color: #F28482;
+}
+
+img {
+    width: 400px;
+    border-radius: 50px;
+    margin: 20px;
+}
+
+.question2 {
+    margin: 50px;
+}
+
+.dessert {
+    width: 250px;
+    padding: 10px;
+    margin: 10px 0px 0px 0px;
+     box-shadow: 0px 0px 0px grey;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.dessert:hover {
+    box-shadow: 20px 20px 50px grey;
+    transition: box-shadow 0.3s ease-in-out;
+}
+.egg{
+	transition: all 100s ease;
+}
+.egg:hover {
+   animation: jiggle 80ms infinite;
+   animation-timing-function: linear;
+}
+
+@keyframes jiggle {
+  0% {transform: rotate(0deg) scale(1.15,1.15);}
+  50% {transform: rotate(2deg) scale(1.15,1.15);}
+  100% {transform: rotate(-2deg) scale(1.15,1.15);}
+}
+
+
+
+
+.desserts {
+    display: flex;
+    justify-content: center;
+
+}
+
+
+.title {
+    display: block;
+}
+
+.question1 {
+    display: none;
+}
+
+.question2 {
+    display: none;
+}
+
+.result {
+    display: none;
+} </style></head>
+    <body>
+        <div class="title">
+            <h1>What type of egg are you?</h1>
+            <img src="http://images.shoutwiki.com/sanrio/2/2d/Gudetama.png" class="egg">
+
+            <p>jiggle the egg to start!</p>
+        </div>
+        <div class="questions">
+            <div class="question1">
+                <h4>Which dessert look good to you?</h4>
+                <div class=" desserts">
+                    <img src="https://i.pinimg.com/564x/1b/9a/9a/1b9a9aabdc2fd87929dde4f0d47b4acf.jpg" class="cake dessert">
+                    <img src="https://i.pinimg.com/564x/2a/2c/ef/2a2cef7a802e6fd01428794eaa4d3391.jpg" class="donut dessert">
+</div>
+                </div>
+                <div class="question2">
+                    <h4>How many hours of sleep do you get on average</h4>
+                    <img src="https://static.vecteezy.com/system/resources/previews/009/665/323/original/cute-kitty-cat-sleeping-lazy-cartoon-element-free-png.png">
+                    <br>
+                    <input class="userInput" placeholder="hours"> <button class="enter"> enter </button>
+
+                </div>
+        </div>
+        <div class="result">
+            <div class="answer">
+                
+            </div>
+            <img src="https://i.pinimg.com/564x/ff/d5/61/ffd561b53c1da868ee2854afcc65b5f9.jpg" class="imgs">
+        </div>
+
+
+
+    
+<script>
+/*__POPCODESTART__*/
+var main = document.querySelector(".title");
+var q1 = document.querySelector(".question1");
+var q2 = document.querySelector(".question2");
+var results = document.querySelector(".result");
+var cake = document.querySelector(".cake");
+var donut = document.querySelector(".donut");
+var egg = document.querySelector(".egg");
+var enter = document.querySelector(".enter");
+var img = document.querySelector(".imgs");
+var hours;
+var dessertChoice;
+var result;
+
+egg.onclick = function () {
+  q1.style.display = "block";
+  main.style.display = "none";
+};
+
+donut.onclick = function () {
+  q2.style.display = "block";
+  q1.style.display = "none";
+  dessertChoice = "donut";
+};
+
+cake.onclick = function () {
+  q2.style.display = "block";
+  q1.style.display = "none";
+  dessertChoice = "cake";
+};
+
+enter.onclick = function () {
+  results.style.display = "block";
+  q2.style.display = "none";
+  hours = document.querySelector(".userInput").value;
+  console.log(hours);
+  var answer = document.querySelector(".answer");
+
+  if (hours <= 7 && dessertChoice === "cake") {
+    answer.innerHTML = "Because you chose " + dessertChoice + " and sleep for " + hours + " hours, you are an omellete!";
+    img.src = "https://i.pinimg.com/564x/e9/d9/64/e9d96492a42ff848769ac16d26edb4d3.jpg";
+  } else if (hours <= 7 && dessertChoice === "donut") {
+    answer.innerHTML = "Because you chose " + dessertChoice + " and sleep for " + hours + " hours, you are a soft boiled egg!";
+    img.src = "https://i.pinimg.com/564x/55/5c/89/555c89b950d11104e5d9fa417531706c.jpg";
+  } else if (hours >= 8 && dessertChoice === "cake") {
+    answer.innerHTML = "Because you chose " + dessertChoice + " and sleep for " + hours + " hours, you are a scrambled egg!";
+    img.src = "https://i.pinimg.com/564x/b0/f5/c6/b0f5c68e5a787ffd1f6c2e49eca0dc15.jpg";
+  } else if (hours >= 8 && dessertChoice === "donut") {
+    answer.innerHTML = "Because you chose " + dessertChoice + " and sleep for " + hours + " hours, you are a sunny side up!";
+    img.src = "https://i.pinimg.com/564x/6a/9b/c5/6a9bc5e7cd382ee9c69083a6954ada2b.jpg";
+  }
+};
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInBvcGNvZGVQcmV2aWV3LmpzIl0sIm5hbWVzIjpbIm1haW4iLCJkb2N1bWVudCIsInF1ZXJ5U2VsZWN0b3IiLCJxMSIsInEyIiwicmVzdWx0cyIsImNha2UiLCJkb251dCIsImVnZyIsImVudGVyIiwiaW1nIiwiaG91cnMiLCJkZXNzZXJ0Q2hvaWNlIiwicmVzdWx0Iiwib25jbGljayIsInN0eWxlIiwiZGlzcGxheSIsInZhbHVlIiwiY29uc29sZSIsImxvZyIsImFuc3dlciIsImlubmVySFRNTCIsInNyYyJdLCJtYXBwaW5ncyI6IkFBQUEsSUFBSUEsSUFBSSxHQUFHQyxRQUFRLENBQUNDLGFBQVQsQ0FBdUIsUUFBdkIsQ0FBWDtBQUNBLElBQUlDLEVBQUUsR0FBR0YsUUFBUSxDQUFDQyxhQUFULENBQXVCLFlBQXZCLENBQVQ7QUFDQSxJQUFJRSxFQUFFLEdBQUdILFFBQVEsQ0FBQ0MsYUFBVCxDQUF1QixZQUF2QixDQUFUO0FBQ0EsSUFBSUcsT0FBTyxHQUFHSixRQUFRLENBQUNDLGFBQVQsQ0FBdUIsU0FBdkIsQ0FBZDtBQUNBLElBQUlJLElBQUksR0FBR0wsUUFBUSxDQUFDQyxhQUFULENBQXVCLE9BQXZCLENBQVg7QUFDQSxJQUFJSyxLQUFLLEdBQUdOLFFBQVEsQ0FBQ0MsYUFBVCxDQUF1QixRQUF2QixDQUFaO0FBQ0EsSUFBSU0sR0FBRyxHQUFHUCxRQUFRLENBQUNDLGFBQVQsQ0FBdUIsTUFBdkIsQ0FBVjtBQUNBLElBQUlPLEtBQUssR0FBR1IsUUFBUSxDQUFDQyxhQUFULENBQXVCLFFBQXZCLENBQVo7QUFDQSxJQUFJUSxHQUFHLEdBQUdULFFBQVEsQ0FBQ0MsYUFBVCxDQUF1QixPQUF2QixDQUFWO0FBQ0EsSUFBSVMsS0FBSjtBQUNBLElBQUlDLGFBQUo7QUFDQSxJQUFJQyxNQUFKOztBQUdBTCxHQUFHLENBQUNNLE9BQUosR0FBYyxZQUFXO0FBQ3JCWCxFQUFBQSxFQUFFLENBQUNZLEtBQUgsQ0FBU0MsT0FBVCxHQUFtQixPQUFuQjtBQUNBaEIsRUFBQUEsSUFBSSxDQUFDZSxLQUFMLENBQVdDLE9BQVgsR0FBcUIsTUFBckI7QUFDSCxDQUhEOztBQUtBVCxLQUFLLENBQUNPLE9BQU4sR0FBZ0IsWUFBVztBQUMxQlYsRUFBQUEsRUFBRSxDQUFDVyxLQUFILENBQVNDLE9BQVQsR0FBbUIsT0FBbkI7QUFDR2IsRUFBQUEsRUFBRSxDQUFDWSxLQUFILENBQVNDLE9BQVQsR0FBbUIsTUFBbkI7QUFDQUosRUFBQUEsYUFBYSxHQUFHLE9BQWhCO0FBQ0gsQ0FKRDs7QUFNQU4sSUFBSSxDQUFDUSxPQUFMLEdBQWUsWUFBVztBQUN6QlYsRUFBQUEsRUFBRSxDQUFDVyxLQUFILENBQVNDLE9BQVQsR0FBbUIsT0FBbkI7QUFDR2IsRUFBQUEsRUFBRSxDQUFDWSxLQUFILENBQVNDLE9BQVQsR0FBbUIsTUFBbkI7QUFDQUosRUFBQUEsYUFBYSxHQUFHLE1BQWhCO0FBRUgsQ0FMRDs7QUFPQUgsS0FBSyxDQUFDSyxPQUFOLEdBQWdCLFlBQVc7QUFDMUJULEVBQUFBLE9BQU8sQ0FBQ1UsS0FBUixDQUFjQyxPQUFkLEdBQXdCLE9BQXhCO0FBQ0daLEVBQUFBLEVBQUUsQ0FBQ1csS0FBSCxDQUFTQyxPQUFULEdBQW1CLE1BQW5CO0FBQ0ZMLEVBQUFBLEtBQUssR0FBR1YsUUFBUSxDQUFDQyxhQUFULENBQXdCLFlBQXhCLEVBQXNDZSxLQUE5QztBQUNFQyxFQUFBQSxPQUFPLENBQUNDLEdBQVIsQ0FBWVIsS0FBWjtBQUNBLE1BQUlTLE1BQU0sR0FBR25CLFFBQVEsQ0FBQ0MsYUFBVCxDQUF3QixTQUF4QixDQUFiOztBQUNBLE1BQUlTLEtBQUssSUFBSSxDQUFULElBQWNDLGFBQWEsS0FBSyxNQUFwQyxFQUE0QztBQUMzQ1EsSUFBQUEsTUFBTSxDQUFDQyxTQUFQLEdBQW1CLHVCQUFzQlQsYUFBdEIsR0FBc0MsaUJBQXRDLEdBQXlERCxLQUF6RCxHQUFpRSw4QkFBcEY7QUFDR0QsSUFBQUEsR0FBRyxDQUFDWSxHQUFKLEdBQVEseUVBQVI7QUFDSCxHQUhELE1BR08sSUFBR1gsS0FBSyxJQUFJLENBQVQsSUFBY0MsYUFBYSxLQUFLLE9BQW5DLEVBQTRDO0FBQ2xEUSxJQUFBQSxNQUFNLENBQUNDLFNBQVAsR0FBbUIsdUJBQXNCVCxhQUF0QixHQUFzQyxpQkFBdEMsR0FBeURELEtBQXpELEdBQWlFLG9DQUFwRjtBQUNHRCxJQUFBQSxHQUFHLENBQUNZLEdBQUosR0FBUSx5RUFBUjtBQUNILEdBSE0sTUFHQSxJQUFJWCxLQUFLLElBQUcsQ0FBUixJQUFhQyxhQUFhLEtBQUssTUFBbkMsRUFBMkM7QUFDckRRLElBQUFBLE1BQU0sQ0FBQ0MsU0FBUCxHQUFtQix1QkFBc0JULGFBQXRCLEdBQXNDLGlCQUF0QyxHQUF5REQsS0FBekQsR0FBa0Usa0NBQXJGO0FBQ09ELElBQUFBLEdBQUcsQ0FBQ1ksR0FBSixHQUFRLHlFQUFSO0FBQ0gsR0FITSxNQUdBLElBQUlYLEtBQUssSUFBRyxDQUFSLElBQWFDLGFBQWEsS0FBSyxPQUFuQyxFQUE0QztBQUNuRFEsSUFBQUEsTUFBTSxDQUFDQyxTQUFQLEdBQW1CLHVCQUFzQlQsYUFBdEIsR0FBc0MsaUJBQXRDLEdBQXlERCxLQUF6RCxHQUFpRSxrQ0FBcEY7QUFDSUQsSUFBQUEsR0FBRyxDQUFDWSxHQUFKLEdBQVEseUVBQVI7QUFDSDtBQUNKLENBbkJEIiwic291cmNlc0NvbnRlbnQiOlsibGV0IG1haW4gPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKFwiLnRpdGxlXCIpO1xubGV0IHExID0gZG9jdW1lbnQucXVlcnlTZWxlY3RvcihcIi5xdWVzdGlvbjFcIik7XG5sZXQgcTIgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKFwiLnF1ZXN0aW9uMlwiKTtcbmxldCByZXN1bHRzID0gZG9jdW1lbnQucXVlcnlTZWxlY3RvcihcIi5yZXN1bHRcIik7XG5sZXQgY2FrZSA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoXCIuY2FrZVwiKTtcbmxldCBkb251dCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoXCIuZG9udXRcIik7XG5sZXQgZWdnID0gZG9jdW1lbnQucXVlcnlTZWxlY3RvcihcIi5lZ2dcIik7XG5sZXQgZW50ZXIgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKFwiLmVudGVyXCIpO1xubGV0IGltZyA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoXCIuaW1nc1wiKTtcbmxldCBob3VycztcbmxldCBkZXNzZXJ0Q2hvaWNlO1xubGV0IHJlc3VsdDtcblxuXG5lZ2cub25jbGljayA9IGZ1bmN0aW9uKCkge1xuICAgIHExLnN0eWxlLmRpc3BsYXkgPSBcImJsb2NrXCI7XG4gICAgbWFpbi5zdHlsZS5kaXNwbGF5ID0gXCJub25lXCI7XG59O1xuXG5kb251dC5vbmNsaWNrID0gZnVuY3Rpb24oKSB7XG5cdHEyLnN0eWxlLmRpc3BsYXkgPSBcImJsb2NrXCI7XG4gICAgcTEuc3R5bGUuZGlzcGxheSA9IFwibm9uZVwiO1xuICAgIGRlc3NlcnRDaG9pY2UgPSBcImRvbnV0XCI7XG59O1xuXG5jYWtlLm9uY2xpY2sgPSBmdW5jdGlvbigpIHtcblx0cTIuc3R5bGUuZGlzcGxheSA9IFwiYmxvY2tcIjtcbiAgICBxMS5zdHlsZS5kaXNwbGF5ID0gXCJub25lXCI7XG4gICAgZGVzc2VydENob2ljZSA9IFwiY2FrZVwiO1xuICAgIFxufTtcblxuZW50ZXIub25jbGljayA9IGZ1bmN0aW9uKCkge1xuXHRyZXN1bHRzLnN0eWxlLmRpc3BsYXkgPSBcImJsb2NrXCI7XG4gICAgcTIuc3R5bGUuZGlzcGxheSA9IFwibm9uZVwiO1xuICBob3VycyA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IgKFwiLnVzZXJJbnB1dFwiKS52YWx1ZTtcbiAgICBjb25zb2xlLmxvZyhob3Vycyk7XG4gICAgbGV0IGFuc3dlciA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IgKFwiLmFuc3dlclwiKTtcbiAgICBpZiAoaG91cnMgPD0gNyAmJiBkZXNzZXJ0Q2hvaWNlID09PSBcImNha2VcIikge1xuICAgIFx0YW5zd2VyLmlubmVySFRNTCA9IFwiQmVjYXVzZSB5b3UgY2hvc2UgXCIrIGRlc3NlcnRDaG9pY2UgKyBcIiBhbmQgc2xlZXAgZm9yIFwiKyBob3VycyArIFwiIGhvdXJzLCB5b3UgYXJlIGFuIG9tZWxsZXRlIVwiO1xuICAgICAgICBpbWcuc3JjPVwiaHR0cHM6Ly9pLnBpbmltZy5jb20vNTY0eC9lOS9kOS82NC9lOWQ5NjQ5MmE0MmZmODQ4NzY5YWMxNmQyNmVkYjRkMy5qcGdcIjtcbiAgICB9IGVsc2UgaWYoaG91cnMgPD0gNyAmJiBkZXNzZXJ0Q2hvaWNlID09PSBcImRvbnV0XCIpIHtcbiAgICBcdGFuc3dlci5pbm5lckhUTUwgPSBcIkJlY2F1c2UgeW91IGNob3NlIFwiKyBkZXNzZXJ0Q2hvaWNlICsgXCIgYW5kIHNsZWVwIGZvciBcIisgaG91cnMgKyBcIiBob3VycywgeW91IGFyZSBhIHNvZnQgYm9pbGVkIGVnZyFcIjtcbiAgICAgICAgaW1nLnNyYz1cImh0dHBzOi8vaS5waW5pbWcuY29tLzU2NHgvNTUvNWMvODkvNTU1Yzg5Yjk1MGQxMTEwNGU1ZDlmYTQxNzUzMTcwNmMuanBnXCI7XG4gICAgfSBlbHNlIGlmIChob3Vycz49IDggJiYgZGVzc2VydENob2ljZSA9PT0gXCJjYWtlXCIpIHtcblx0YW5zd2VyLmlubmVySFRNTCA9IFwiQmVjYXVzZSB5b3UgY2hvc2UgXCIrIGRlc3NlcnRDaG9pY2UgKyBcIiBhbmQgc2xlZXAgZm9yIFwiKyBob3VycyArICBcIiBob3VycywgeW91IGFyZSBhIHNjcmFtYmxlZCBlZ2chXCI7XG4gICAgICAgIGltZy5zcmM9XCJodHRwczovL2kucGluaW1nLmNvbS81NjR4L2IwL2Y1L2M2L2IwZjVjNjhlNWE3ODdmZmQxZjZjMmU0OWVjYTBkYzE1LmpwZ1wiO1xuICAgIH0gZWxzZSBpZiAoaG91cnM+PSA4ICYmIGRlc3NlcnRDaG9pY2UgPT09IFwiZG9udXRcIikge1xuICAgIGFuc3dlci5pbm5lckhUTUwgPSBcIkJlY2F1c2UgeW91IGNob3NlIFwiKyBkZXNzZXJ0Q2hvaWNlICsgXCIgYW5kIHNsZWVwIGZvciBcIisgaG91cnMgKyBcIiBob3VycywgeW91IGFyZSBhIHN1bm55IHNpZGUgdXAhXCI7XG4gICAgICAgIGltZy5zcmM9XCJodHRwczovL2kucGluaW1nLmNvbS81NjR4LzZhLzliL2M1LzZhOWJjNWU3Y2QzODJlZTljNjkwODNhNjk1NGFkYTJiLmpwZ1wiO1xuICAgIH1cbn07XG4iXX0=</script></body></html>
